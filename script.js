@@ -32,12 +32,14 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
 
+    /*
     for (let i = 0; i < 5; i++) {
         let humanChoice = getHumanChoice();
         let computerChoice = getComputerChoice();
 
         playRound(humanChoice, computerChoice);
     }
+    */
 
     if (humanScore > computerScore) {
         console.log("YOU WIN!");
@@ -67,6 +69,14 @@ function getHumanChoice() {
         }
     }
 }
+
+let buttons = document.querySelectorAll('button');
+buttons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        console.log("TEST!");
+    })
+});
+
 
 playGame();
 

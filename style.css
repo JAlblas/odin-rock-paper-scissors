@@ -1,3 +1,36 @@
+html,
 body {
     background-color: #3ca867;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #FFF;
+    width: 500px;
+    height: 300px;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+button {
+    padding: 10px 25px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #3ca867;
+    color: #FFF;
 }
