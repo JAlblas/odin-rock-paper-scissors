@@ -2,6 +2,7 @@ html,
 body {
     background-color: #3ca867;
     height: 100%;
+    font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -17,7 +18,18 @@ body {
     justify-content: space-around;
     background-color: #FFF;
     width: 500px;
-    height: 300px;
+    height: 500px;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.player,
+.computer {
+    padding: 0px 50px;
 }
 
 .buttons {

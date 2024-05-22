@@ -71,7 +71,8 @@ buttons.forEach(button => {
 
         playRound(humanChoice, computerChoice);
 
-        checkWinner();
+        if (humanScore = 5 || computerScore == 5)
+            checkWinner();
     })
 });
 
