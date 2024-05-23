@@ -28,8 +28,11 @@ body {
 }
 
 .player,
-.computer {
+.computer,
+.summary {
     padding: 0px 50px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .buttons {

@@ -1,12 +1,15 @@
-let humanScore = 0;
+let playerScore = 0;
 let computerScore = 0;
 
+let lastRoundContainer = document.querySelector('.last-round');
+let playerScoreContainer = document.querySelector('.player-score');
+let computerScoreContainer = document.querySelector('.computer-score');
 
 function playRound(humanChoice, computerChoice) {
     switch (humanChoice) {
         case "rock":
             if (computerChoice == "scissors") {
-                humanScore++;
+                playerScore++;
             } else if (computerChoice == "paper") {
                 computerScore++;
             }
@@ -15,26 +18,27 @@ function playRound(humanChoice, computerChoice) {
             if (computerChoice == "scissors") {
                 computerScore++;
             } else if (computerChoice == "rock") {
-                humanScore++;
+                playerScore++;
             }
             break;
         case "scissors":
             if (computerChoice == "rock") {
-                computerChoice++;
+                computerScore++;
             } else if (computerChoice == "paper") {
-                humanScore++;
+                playerScore++;
             }
             break;
     }
-    console.log(`${humanChoice} VS ${computerChoice}`);
-    console.log(humanScore);
-    console.log(computerScore);
+
+    lastRoundContainer.textContent = `${capitalize(humanChoice)} VS ${capitalize(computerChoice)}`;
+    playerScoreContainer.textContent = playerScore;
+    computerScoreContainer.textContent = computerScore;
 }
 
 function checkWinner() {
-    if (humanScore > computerScore) {
+    if (playerScore > computerScore) {
         console.log("YOU WIN!");
-    } else if (humanScore < computerScore) {
+    } else if (playerScore < computerScore) {
         console.log("YOU LOSE!");
     } else {
         console.log("DRAW!");
@@ -44,40 +48,28 @@ function checkWinner() {
 function getComputerChoice() {
     const POSSIBILITIES = ["rock", "paper", "scissors"];
 
-    return POSSIBILITIES[Math.floor(Math.random() * 3)];
-}
+    let random = Math.floor(Math.random() * 3);
 
-function getHumanChoice() {
-    while (true) {
-        choice = prompt("Rock, paper, scissors?");
-        if (choice === null) {
-            // User cancelled the prompt
-            break;
-        }
-        choice = choice.toLowerCase();
-        if (choice === "rock" || choice === "paper" || choice === "scissors") {
-            return choice;
-        }
-    }
+    return POSSIBILITIES[random];
 }
 
 let buttons = document.querySelectorAll('button');
 buttons.forEach(button => {
     button.addEventListener("click", (e) => {
-        let humanChoice = e.target.id;
-        console.log(humanChoice)
+        let playerChoice = e.target.id;
 
         let computerChoice = getComputerChoice();
 
-        playRound(humanChoice, computerChoice);
+        playRound(playerChoice, computerChoice);
 
-        if (humanScore = 5 || computerScore == 5)
+        if (playerChoice = 5 || computerScore == 5)
             checkWinner();
     })
 });
 
-
-//playGame();
+function capitalize(s) {
+    return s[0].toUpperCase() + s.slice(1);
+}
 
 
 
