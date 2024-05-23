@@ -36,13 +36,25 @@ function playRound(humanChoice, computerChoice) {
 }
 
 function checkWinner() {
+    let result = "";
     if (playerScore > computerScore) {
-        console.log("YOU WIN!");
+        result = "YOU WIN!";
     } else if (playerScore < computerScore) {
-        console.log("YOU LOSE!");
+        result = "YOU LOSE!";
     } else {
-        console.log("DRAW!");
+        result = "DRAW";
     }
+
+    let buttonsDiv = document.querySelector('.buttons');
+    buttonsDiv.innerHTML = result;
+    buttonsDiv.style.flexDirection = "column";
+
+    let button = document.createElement('button');
+    button.textContent = "START OVER";
+    button.addEventListener("click", () => { location.reload() });
+    console.log(button);
+
+    document.querySelector('.buttons').append(button);
 }
 
 function getComputerChoice() {
@@ -62,7 +74,7 @@ buttons.forEach(button => {
 
         playRound(playerChoice, computerChoice);
 
-        if (playerChoice = 5 || computerScore == 5)
+        if (playerScore == 5 || computerScore == 5)
             checkWinner();
     })
 });
