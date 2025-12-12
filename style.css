@@ -33,6 +33,7 @@ header {
   display: flex;
   flex-direction: column;
   width: 100%;
+  padding: 25px 0;
 }
 
 #results p {
@@ -64,7 +65,7 @@ header {
 }
 
 #buttons {
-  margin: 0 50px;
+  margin: 0 60px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
@@ -72,13 +73,19 @@ header {
 
 button {
   padding: 10px 25px;
-  font-size: 20px;
+  font-size: 18px;
   border-radius: 5px;
-  background-color: #0d70ae;
+  background-color: #127fc4;
   border: 1px solid black;
-  color: #fff;
+  color: #000;
 }
 
 button:hover {
   cursor: pointer;
+}
+
+button img {
+  margin-top: 10px;
+  width: 50px;
+  height: 50px;
 }

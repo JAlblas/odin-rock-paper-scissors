@@ -86,7 +86,8 @@ function capitalize(s) {
 
 let buttons = document.querySelector("#buttons");
 buttons.addEventListener("click", (e) => {
-  let playerChoice = e.target.id;
+  const btn = e.target.closest("button");
+  let playerChoice = btn.id;
   let computerChoice = getComputerChoice();
 
   playRound(playerChoice, computerChoice);
