@@ -1,88 +1,96 @@
 let playerScore = 0;
 let computerScore = 0;
 
-let lastRoundContainer = document.querySelector('.last-round');
-let playerScoreContainer = document.querySelector('.player-score');
-let computerScoreContainer = document.querySelector('.computer-score');
+let lastRoundContainer = document.querySelector(".last-round");
+let playerScoreContainer = document.querySelector(".player-score");
+let computerScoreContainer = document.querySelector(".computer-score");
 
 function playRound(humanChoice, computerChoice) {
-    switch (humanChoice) {
-        case "rock":
-            if (computerChoice == "scissors") {
-                playerScore++;
-            } else if (computerChoice == "paper") {
-                computerScore++;
-            }
-            break;
-        case "paper":
-            if (computerChoice == "scissors") {
-                computerScore++;
-            } else if (computerChoice == "rock") {
-                playerScore++;
-            }
-            break;
-        case "scissors":
-            if (computerChoice == "rock") {
-                computerScore++;
-            } else if (computerChoice == "paper") {
-                playerScore++;
-            }
-            break;
-    }
+  switch (humanChoice) {
+    case "rock":
+      if (computerChoice == "scissors") {
+        playerScore++;
+      } else if (computerChoice == "paper") {
+        computerScore++;
+      }
+      break;
+    case "paper":
+      if (computerChoice == "scissors") {
+        computerScore++;
+      } else if (computerChoice == "rock") {
+        playerScore++;
+      }
+      break;
+    case "scissors":
+      if (computerChoice == "rock") {
+        computerScore++;
+      } else if (computerChoice == "paper") {
+        playerScore++;
+      }
+      break;
+  }
 
-    lastRoundContainer.textContent = `${capitalize(humanChoice)} VS ${capitalize(computerChoice)}`;
-    playerScoreContainer.textContent = playerScore;
-    computerScoreContainer.textContent = computerScore;
+  updateScoreUI(humanChoice, computerChoice);
+
+  if (playerScore == 5 || computerScore == 5) {
+    checkWinner();
+  }
+}
+
+function updateScoreUI(humanChoice, computerChoice) {
+  lastRoundContainer.textContent = `${capitalize(humanChoice)} VS ${capitalize(
+    computerChoice
+  )}`;
+  playerScoreContainer.textContent = playerScore;
+  computerScoreContainer.textContent = computerScore;
 }
 
 function checkWinner() {
-    let result = "";
-    if (playerScore > computerScore) {
-        result = "YOU WIN!";
-    } else if (playerScore < computerScore) {
-        result = "YOU LOSE!";
-    } else {
-        result = "DRAW";
-    }
+  let result = "";
+  if (playerScore > computerScore) {
+    result = "YOU WIN!";
+  } else if (playerScore < computerScore) {
+    result = "YOU LOSE!";
+  } else {
+    result = "DRAW";
+  }
 
-    let buttonsDiv = document.querySelector('.buttons');
-    buttonsDiv.innerHTML = result;
-    buttonsDiv.style.flexDirection = "column";
+  showResultUI(result);
+}
 
-    let button = document.createElement('button');
-    button.textContent = "START OVER";
-    button.addEventListener("click", () => { location.reload() });
-    console.log(button);
+function showResultUI(result) {
+  let buttonsDiv = document.querySelector("#next-move");
+  buttonsDiv.innerHTML = result;
+  buttonsDiv.style.flexDirection = "column";
 
-    document.querySelector('.buttons').append(button);
+  let button = document.createElement("button");
+  button.textContent = "START OVER";
+  button.addEventListener("click", () => {
+    location.reload();
+  });
+
+  document.querySelector("#next-move").append(button);
 }
 
 function getComputerChoice() {
-    const POSSIBILITIES = ["rock", "paper", "scissors"];
+  const POSSIBILITIES = ["rock", "paper", "scissors"];
 
-    let random = Math.floor(Math.random() * 3);
+  let random = Math.floor(Math.random() * 3);
 
-    return POSSIBILITIES[random];
+  return POSSIBILITIES[random];
 }
-
-let buttons = document.querySelectorAll('button');
-buttons.forEach(button => {
-    button.addEventListener("click", (e) => {
-        let playerChoice = e.target.id;
-
-        let computerChoice = getComputerChoice();
-
-        playRound(playerChoice, computerChoice);
-
-        if (playerScore == 5 || computerScore == 5)
-            checkWinner();
-    })
-});
 
 function capitalize(s) {
-    return s[0].toUpperCase() + s.slice(1);
+  return s[0].toUpperCase() + s.slice(1);
 }
 
+let buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    let playerChoice = e.target.id;
 
+    let computerChoice = getComputerChoice();
 
-
+    playRound(playerChoice, computerChoice);
+  });
+});
