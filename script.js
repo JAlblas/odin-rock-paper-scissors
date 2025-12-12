@@ -84,13 +84,10 @@ function capitalize(s) {
   return s[0].toUpperCase() + s.slice(1);
 }
 
-let buttons = document.querySelectorAll("button");
-buttons.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    let playerChoice = e.target.id;
+let buttons = document.querySelector("#buttons");
+buttons.addEventListener("click", (e) => {
+  let playerChoice = e.target.id;
+  let computerChoice = getComputerChoice();
 
-    let computerChoice = getComputerChoice();
-
-    playRound(playerChoice, computerChoice);
-  });
+  playRound(playerChoice, computerChoice);
 });
